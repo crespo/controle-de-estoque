@@ -14,7 +14,7 @@ class EstoqueLista:
     def add(self, estoqueNovo):
         for estoque in self.estoque:
             if estoque.produto.nome == estoqueNovo.produto.nome:
-               return 'Produto não foi criado. Produto de mesmo nome já existe'
+               return 'Produto de mesmo nome já existe.'
                 
         self.estoque.append(estoqueNovo)
         return 'Produto criado.'
@@ -47,7 +47,6 @@ class EstoqueLista:
     def toString(self):
         for estoque in self.estoque:
             print(f"""
-                  id: {estoque.produto.id}
                   nome: {estoque.produto.nome}
                   valor: {estoque.produto.valor}
                   quantidade: {estoque.quantidade}
