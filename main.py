@@ -46,11 +46,11 @@ def menuVenda():
 estoque = EstoqueLista()
 
 while True:
-    userInput = input(menuPrincipal)
+    userInput = input(menuPrincipal())
     
     if userInput == "1":
         while True:
-            userInput = input(menuProduto)
+            userInput = input(menuProduto())
             
             if userInput == "1":
                 nome = input('Digite o nome do produto: ')
@@ -70,7 +70,7 @@ while True:
     
     elif userInput == "2":
         while True:
-            userInput = input(menuEstoque)
+            userInput = input(menuEstoque())
     
             if userInput == "1":
                 estoque.toString()
@@ -90,6 +90,10 @@ while True:
             else:
                 print('Opção inválida.')
     
+    elif userInput == "3":
+        userInput = input(menuPedidoDeCompra())
+        
+        
     elif userInput == "0":
         break
     
