@@ -9,20 +9,46 @@ class Estoque:
 class EstoqueLista:
     def __init__(self):
         self.estoque = []
+       
         
-    def add(self, Produto):
-        self.estoque.append(Produto)
+    def add(self, estoqueNovo):
+        for estoque in self.estoque:
+            if estoque.produto.nome == estoqueNovo.produto.nome:
+               return 'Produto não foi criado. Produto de mesmo nome já existe'
+                
+        self.estoque.append(estoqueNovo)
+        return 'Produto criado.'
+        
         
     def consultarEstoque(self, nome):
         for estoque in self.estoque:
             if estoque.produto.nome == nome:
-                return estoque.quantidade
+                return f'Quantidade: {estoque.quantidade}'
         
-    # def alterarEstoque(self, nome, quantidadeNova)
+        return 'Produto não encontrado.'
+            
         
-    def print(self):
-        for item in self.estoque:
-            print(item.id)
-            print(item.nome)
-            print(item.valor)
-            print(item.quantidade)
+    def removerEstoque(self, nome):
+        for estoque in self.estoque:
+            if estoque.produto.nome == nome:
+                self.estoque.remove(estoque)
+                return 'Produto removido.'
+        
+        return 'Produto não encontrado.'
+        
+    
+    def alterarEstoque(self, nome, quantidade):
+        for estoque in self.estoque:
+            if estoque.produto.nome == nome:
+                index = self.estoque.index(estoque)
+                self.estoque[index].quantidade = quantidade
+    
+    
+    def toString(self):
+        for estoque in self.estoque:
+            print(f"""
+                  id: {estoque.produto.id}
+                  nome: {estoque.produto.nome}
+                  valor: {estoque.produto.valor}
+                  quantidade: {estoque.quantidade}
+                  """)
