@@ -9,8 +9,10 @@ def criarProduto(nome, valor, quantidade):
 
 def menuPrincipal():
     return """
-            1 - Menu de Produto
-            2 - Menu de Estoque
+            1 - Produtos
+            2 - Estoque
+            3 - Pedidos de Compra
+            4 - Vendas
             0 - Sair"""
            
             
