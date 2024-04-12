@@ -23,7 +23,7 @@ class EstoqueLista:
     def consultarEstoque(self, nome):
         for estoque in self.estoque:
             if estoque.produto.nome == nome:
-                return f'Quantidade: {estoque.quantidade}'
+                return estoque
         
         return 'Produto não encontrado.'
             
@@ -42,7 +42,7 @@ class EstoqueLista:
             if estoque.produto.nome == nome:
                 index = self.estoque.index(estoque)
                 self.estoque[index].quantidade = quantidade
-    
+                
     
     def toString(self):
         for estoque in self.estoque:
@@ -51,3 +51,11 @@ class EstoqueLista:
                   valor: {estoque.produto.valor}
                   quantidade: {estoque.quantidade}
                   """)
+            
+    
+    def consultarValor(self, nome):
+        for estoque in self.estoque:
+            if estoque.produto.nome == nome:
+                return estoque.produto.valor
+        
+        return 'Produto não encontrado.'

@@ -1,5 +1,6 @@
 from Produto import Produto
 from Estoque import Estoque, EstoqueLista
+from PedidoDeCompra import PedidoDeCompra
 
 def criarProduto(nome, valor, quantidade):
     produtoNovo = Produto(nome, valor)
@@ -44,6 +45,7 @@ def menuVenda():
             0 - Voltar"""
 
 estoque = EstoqueLista()
+pedidoDeCompra = PedidoDeCompra()
 
 while True:
     userInput = input(menuPrincipal())
@@ -77,7 +79,12 @@ while True:
         
             elif userInput == "2":
                 nome = input('Digite o nome do produto: ')
-                print(estoque.consultarEstoque(nome))
+                retorno = estoque.consultarEstoque(nome)
+                
+                if isinstance(retorno, str):
+                    print(retorno)
+                else:
+                    print(retorno.quantidade)
     
             elif userInput == "3":
                 nome = input('Digite o nome do produto: ')
@@ -92,6 +99,45 @@ while True:
     
     elif userInput == "3":
         userInput = input(menuPedidoDeCompra())
+        
+        if userInput == "1":
+            pedidoDeCompraNovo = []
+            
+            while True:
+                nome = input('Digite o nome do produto: ')
+                quantidade = int(input('Digite a quantidade do produto: '))
+                
+                retorno = estoque.consultarEstoque(nome)
+                
+                if isinstance(retorno, str):
+                    print(retorno)
+                else: 
+                    if int(retorno.quantidade) < quantidade:
+                        print(f'qtd: {retorno.quantidade}')
+                        print('Quantidade não disponível.')
+                    else:
+                        podeIncluir = True
+                        for pedido in pedidoDeCompraNovo:
+                            if nome in pedido:
+                                podeIncluir = False
+                        
+                        if podeIncluir:
+                            valor = int(estoque.consultarValor(nome)) * quantidade
+                            pedidoDeCompraNovo.append([nome, str(quantidade), str(valor)])
+                        else: 
+                            print('Produto já incluído.')   
+            
+                continuar = input("""
+                                  Pressione ENTER para continuar...
+                                  0 - Finalizar Pedido""")
+                
+                if continuar == "0":
+                    pedidoDeCompra.add(pedidoDeCompraNovo)
+                    break
+        
+        elif userInput == "2":
+            pedidoDeCompra.toString()
+            
         
         
     elif userInput == "0":
