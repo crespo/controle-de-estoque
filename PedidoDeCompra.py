@@ -1,8 +1,3 @@
-## must be a queue
-from Estoque import Estoque
-
-id = 0
-  
 class PedidoDeCompra:
     def __init__(self):
         self.pedidoDeCompra = []
@@ -15,12 +10,24 @@ class PedidoDeCompra:
     def removerPedido(self):
         return self.pedidoDeCompra.pop(0)
     
+    def proximoPedido(self):
+        if self.pedidoDeCompra:
+            for produto in self.pedidoDeCompra[0]:
+                print(f"nome: {produto[0]}\nquantidade: {produto[1]}\nvalor: {produto[2]}\n")
+            return True
+        else:
+            print("Nenhum pedido de compra encontrado.")
+            return False
     
     def toString(self):
-        for pedido in self.pedidoDeCompra:
-            for produto in pedido:
-                print(f"""
-                    nome: {produto[0]}
-                    quantidade: {produto[1]}
-                    valor: {produto[2]}""")
+        numeroPedido = 0
+        if self.pedidoDeCompra:
+            for pedido in self.pedidoDeCompra:
+                numeroPedido += 1
+                print(f"Pedido {numeroPedido}:")
+                for produto in pedido:
+                    print(f"nome: {produto[0]}\nquantidade: {produto[1]}\nvalor: {produto[2]}")
+                print("+----------------------+")
+        else:
+            print("Nenhum pedido de compra encontrado.")
             
