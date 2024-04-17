@@ -45,12 +45,13 @@ class EstoqueLista:
                 
     
     def toString(self):
-        for estoque in self.estoque:
-            print(f"""
-                  nome: {estoque.produto.nome}
-                  valor: {estoque.produto.valor}
-                  quantidade: {estoque.quantidade}
-                  """)
+        if self.estoque:
+            print("Estoque atual:\n")
+            for estoque in self.estoque:
+                print(f"nome: {estoque.produto.nome}\nvalor: {estoque.produto.valor}\nquantidade: {estoque.quantidade}")
+                print("+----------------------+")
+        else:
+            print('Estoque vazio.')
             
     
     def consultarValor(self, nome):
@@ -59,3 +60,10 @@ class EstoqueLista:
                 return estoque.produto.valor
         
         return 'Produto não encontrado.'
+    
+    def recolocarEstoque(self, venda):
+        pedido = venda[0]
+        for produto in pedido:
+            nome, quantidade = produto[0], produto[1]
+            estoqueAtual = self.consultarEstoque(nome).quantidade
+            self.alterarEstoque(nome, estoqueAtual + quantidade)
