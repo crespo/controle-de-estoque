@@ -33,12 +33,6 @@ def menuEstoque():
 2 - Consultar Estoque (Produto)
 0 - Voltar
 """
-#     return """
-# 1 - Consultar Estoque
-# 2 - Consultar Estoque (Produto)
-# 3 - Alterar Estoque (Produto)
-# 0 - Voltar
-# """
             
 def menuPedidoDeCompra():
     return """
@@ -103,15 +97,15 @@ while True:
                 else:
                     print(retorno.quantidade)
     
-            elif userInput == "3": ## alterar estoque (produto)
-                while True:
-                    nome = input('Digite o nome do produto: ')
-                    quantidade = input('Digite a nova quantidade: ')
-                    if not quantidade.isnumeric():
-                        print('Quantidade deve ser um valor numérico.')
-                        continue
-                    estoque.alterarEstoque(nome, quantidade)
-                    break
+            # elif userInput == "3": ## alterar estoque (produto)
+            #     while True:
+            #         nome = input('Digite o nome do produto: ')
+            #         quantidade = input('Digite a nova quantidade: ')
+            #         if not quantidade.isnumeric():
+            #             print('Quantidade deve ser um valor numérico.')
+            #             continue
+            #         estoque.alterarEstoque(nome, quantidade)
+            #         break
         
             elif userInput == "0": ## voltar
                 break
